@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :verify_user, only: [:index, :show, :update, :delete]
+  before_action :verify_admin_user, only: [:index]
 
   # GET /users
   def index
@@ -38,6 +40,8 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  # POST /users/authenticate
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -46,6 +50,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password_digest, :is_admin)
+      params.permit(:email,
+                    :password)
     end
 end
