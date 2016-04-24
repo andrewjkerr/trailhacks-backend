@@ -41,6 +41,15 @@ class UsersController < ApplicationController
   end
 
   # POST /users/authenticate
+  def authenticate
+    @user = User.find_by_email(params[:email])
+    
+    if @user && @user.authenticate(params[:password])
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -50,7 +59,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:email,
-                    :password)
+      params.permit(:email, :password)
     end
 end
