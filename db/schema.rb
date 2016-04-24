@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424010815) do
+ActiveRecord::Schema.define(version: 20160424030417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "markers", force: :cascade do |t|
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "summary"
+    t.integer  "trail_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "beacon_number"
+    t.index ["trail_id"], name: "index_markers_on_trail_id", using: :btree
+  end
+
+  create_table "trails", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "beacon_number"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           null: false
@@ -25,4 +44,5 @@ ActiveRecord::Schema.define(version: 20160424010815) do
     t.string   "auth_token"
   end
 
+  add_foreign_key "markers", "trails"
 end

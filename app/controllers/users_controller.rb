@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :verify_user, only: [:index, :show, :update, :delete]
-  before_action :verify_admin_user, only: [:index]
+  before_action :verify_user, only: [:show, :update]
+  before_action :verify_admin_user, only: [:index, :delete]
 
   # GET /users
   def index
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   # POST /users/authenticate
   def authenticate
     @user = User.find_by_email(params[:email])
-    
+
     if @user && @user.authenticate(params[:password])
       render json: @user
     else

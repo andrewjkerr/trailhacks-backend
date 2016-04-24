@@ -15,7 +15,7 @@ gem 'puma', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 
 # Yeeeeeeeeeeeeee
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.10.0.rc1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
