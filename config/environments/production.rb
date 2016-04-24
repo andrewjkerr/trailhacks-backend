@@ -77,4 +77,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+    allow do
+      origins '*'
+      resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :patch, :options, :head]
+    end
+  end
+
+  config.serve_static_assets = true
 end
