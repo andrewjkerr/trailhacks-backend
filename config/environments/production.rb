@@ -80,7 +80,7 @@ Rails.application.configure do
 
   config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
     allow do
-      origins '*'
+      origins 'null'
       resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :patch, :options, :head]
     end
   end
