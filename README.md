@@ -9,15 +9,6 @@ The API for our Trailhacks 2016 hack.
 - Postgres
 - Puma
 
-## API Tutorial
+## Notice
 
-Trailhacks team read here! It's CRUD and follows your general API design guidelines so it should be fairly intuitive. Look at the `app/serializers` directory for what is returned.
-
-### Creating a user
-POST to `/users` with email and password. Will receive user info back with auth token.
-
-### Authenticating as a user
-POST to `/users/authenticate` with email and password. Will receive user info back with auth token.
-
-### Verifying user identity on _all_ requests
-Use `auth_token` as a _parameter_. Can change to header if easier for y'all - just let me know.
+As this was a hackathon project, some of the code isn't as secure as it should be. Please do not use this as an example of user authentication.
